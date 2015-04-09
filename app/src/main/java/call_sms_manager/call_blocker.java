@@ -21,13 +21,15 @@ public class call_blocker extends BroadcastReceiver {
 
     @Override
     public void onReceive(final Context context, final Intent intent) {
-        Log.e(LOGTAG, "OutgoingCallReceiver onReceive");
+        Log.v(LOGTAG, "OutgoingCallReceiver onReceive");
+        Log.v(LOGTAG, "Action : " + intent.getAction());
         if (intent.getAction().equals(call_blocker.OUTGOING_CALL_ACTION)) {
-            Log.e(LOGTAG, "OutgoingCallReceiver NEW_OUTGOING_CALL received");
+            Log.v(LOGTAG, "OutgoingCallReceiver NEW_OUTGOING_CALL received");
 
             // get phone number from bundle
             String phoneNumber = intent.getExtras().getString(call_blocker.INTENT_PHONE_NUMBER);
             if ((phoneNumber != null) && phoneNumber.equals(phone_number)) {
+                Log.v(LOGTAG, "Phone number matched");
                 Toast.makeText(context, "NEW_OUTGOING_CALL intercepted to number " + phone_number + " - aborting call",
                         Toast.LENGTH_LONG).show();
 
@@ -47,6 +49,9 @@ public class call_blocker extends BroadcastReceiver {
                 }
 
                 this.abortBroadcast();
+                if (getResultData() != null) {
+                    setResultData(null);
+                }
             }
         }
     }
