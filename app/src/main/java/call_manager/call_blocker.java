@@ -1,4 +1,4 @@
-package call_sms_manager;
+package call_manager;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
