@@ -47,6 +47,7 @@ public class call_blocker extends BroadcastReceiver {
                 catch(Exception e) {
                     e.printStackTrace();
                 }
+                
 
                 this.abortBroadcast();
                 if (getResultData() != null) {
