@@ -1,9 +1,14 @@
 package com.example.tzavikass.dontcallher;
 
+import android.app.ActivityManager;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.app.ActivityManager.RunningAppProcessInfo;
+
+import java.util.List;
 
 public class MainActivity extends ActionBarActivity {
 
@@ -11,6 +16,14 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        ActivityManager activityManager = (ActivityManager)
+        this.getSystemService( ACTIVITY_SERVICE );
+        List<RunningAppProcessInfo> procInfos = activityManager.getRunningAppProcesses();
+        for (RunningAppProcessInfo prInfo: procInfos) {
+            Log.v("PROCESS:" , prInfo.processName.toString());
+        }
+
 //        block_calls.setPhoneNumber("111");
     }
 
